@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>练习</title>
+<style>
+*{margin:0; padding:0;}
+body{background:#000; text-align:center;}
+#c1{background:#fff;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oC = document.getElementById('c1');
+	var gd = oC.getContext('2d');
+	gd.moveTo(342,33);
+	gd.lineTo(404,141);
+	gd.lineTo(576,140);
+	gd.lineTo(436,193);
+	gd.lineTo(508,314);
+	gd.lineTo(336,236);
+	gd.lineTo(195,284);
+	gd.lineTo(244,192);
+	gd.lineTo(134,141);
+	gd.lineTo(282,140);
+	gd.lineTo(342,33);
+	
+	gd.stroke();
+},false);
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
