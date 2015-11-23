@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>练习</title>
+<style>
+*{ padding:0; margin:0;}
+.box{ width:200px; height:200px; border-radius:50%; position:absolute; top:50%; left:50%; margin-left:-100px; margin-top:-100px; border:5px solid #000;}
+.box .hours{ width:12px; height:50px; position:absolute;left:50%; margin-left:-6px; top:50px;background:#000;-webkit-transform-origin:center bottom;}
+.box .sec{ width:8px; height:70px; position:absolute;left:50%; margin-left:-4px; top:30px;background:#000;-webkit-transform-origin:center bottom;}
+.box .min{ width:4px; height:80px; position:absolute;left:50%; margin-left:-2px; top:20px;background:#000;-webkit-transform-origin:center bottom;}
+.box .count{ width:2px; height:5px; background:#000; position:absolute; top:0; left:50%; margin-left:-1px; display:block;-webkit-transform-origin:center 100px;}
+.box .count_big{ width:4px; height:10px; background:#000; position:absolute; top:0; left:50%; margin-left:-2px; display:block;-webkit-transform-origin:center 100px;}
+.box .count_big strong{ position:absolute; top:10px; left:-8px; width:20px; text-align:center;}
+.box .yuan{ width:20px; height:20px; position:absolute; top:50%; left:50%; background:#000; border-radius:50%; margin-left:-10px; margin-top:-10px;}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementsByClassName('box')[0];
+	var oH=document.getElementsByClassName('hours')[0];
+	var oS=document.getElementsByClassName('sec')[0];
+	var oM=document.getElementsByClassName('min')[0];
+	for(var i=0;i<60;i++){
+		var oSpan=document.createElement('span');
+		if(i%5==0){
+			oSpan.className='count_big';
+			if(i==0){
+				oSpan.innerHTML='<strong>'+12+'<\/strong>';
+			}else{
+				oSpan.innerHTML='<strong>'+i/5+'<\/strong>';
+			}
+			var oE=oSpan.children[0];
+			oE.style.WebkitTransform='rotate('+-i*6+'deg)'
+		}else{
+			oSpan.className='count';
+		}
+		oSpan.style.WebkitTransform='rotate('+i*6+'deg)';
+		oBox.appendChild(oSpan);
+	}
+	function shi(){
+		var oDate=new Date();
+		oH.style.WebkitTransform='rotate('+(oDate.getHours()+oDate.getMinutes()/60)*30+'deg)';
+		oS.style.WebkitTransform='rotate('+(oDate.getMinutes()+oDate.getSeconds()/60)*6+'deg)'
+		oM.style.WebkitTransform='rotate('+oDate.getSeconds()*6+'deg)';	
+	}
+	shi();
+	setInterval(shi,1000)
+}
+</script>
+</head>
+
+<body>
+<div class="box">
+	<div class="hours"></div>
+    <div class="sec"></div>
+    <div class="min"></div>
+    <div class="yuan"></div>
+</div>
+</body>
+</html>

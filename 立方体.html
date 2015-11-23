@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>练习</title>
+<style>
+*{ padding:0; margin:0;}
+.box{ width:200px; height:200px; position:absolute; top:50%; left:50%; margin:-100px 0 0 -100px; -webkit-transform:perspective(800px) rotateY(-60deg) rotateX(-30deg);transform-style:preserve-3d;}
+.box div{ position:absolute; top:0; left:0; width:100%; height:100%; opacity:0.5; font-size:50px; line-height:200px; text-align:center;}
+.box .front{ background:#0F0;-webkit-transform:translateZ(100px);}
+.box .back{ background:#C09;-webkit-transform:translateZ(-100px);}
+.box .left{ background:#F90; -webkit-transform:translateX(-100px) rotateY(90deg);}
+.box .right{ background:#60F; -webkit-transform:translateX(100px) rotateY(90deg);}
+.box .top{ background:#00F; -webkit-transform:translateY(100px) rotateX(90deg);}
+.box .bottom{ background:#F00; -webkit-transform:translateY(-100px) rotateX(90deg);}
+</style>
+<script>
+window.onload=function(){
+	var oBox=document.getElementsByClassName('box')[0];
+	var bLeft=false,bRight=false,bUp=false,bDown=false;
+	
+	var y=-60;
+	var x=-30;
+	var timer=null;
+	document.onkeydown=function(ev){
+		if(ev.keyCode==37){
+			bLeft=true;
+		}
+		if(ev.keyCode==39){
+			bRight=true;	
+		}
+		if(ev.keyCode==38){
+			bUp=true;
+		}
+		if(ev.keyCode==40){
+			bDown=true;
+		}
+	};	
+	document.onkeyup=function(ev){
+		
+		if(ev.keyCode==37){
+			bLeft=false;
+		}
+		if(ev.keyCode==39){
+			bRight=false;	
+		}
+		if(ev.keyCode==38){
+			bUp=false;
+		}
+		if(ev.keyCode==40){
+			bDown=false;
+		}
+	};
+	
+	timer=setInterval(function(){
+		if(bLeft){
+			y-=10;
+			change();
+		}
+		if(bRight){
+			y+=10;
+			change();
+		}
+		if(bUp){
+			x+=10;
+			change();
+		}
+		if(bDown){
+			x-=10;
+			change();
+		}
+	},30);
+	
+	function change(){
+		oBox.style.transform='perspective(800px) rotateY('+y+'deg) rotateX('+x+'deg)';	
+	}
+}
+</script>
+</head>
+
+<body>
+<div class="box">
+	<div class="front">1</div>
+    <div class="back">2</div>
+    <div class="left">3</div>
+    <div class="right">4</div>
+    <div class="top">5</div>
+    <div class="bottom">6</div>
+</div>
+</body>
+</html>

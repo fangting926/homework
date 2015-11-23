@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<style>
+
+</style>
+<script>
+window.onload=function(){
+	var oT=document.querySelector('#t1');
+	var oS=document.getElementById('s1');
+	
+	var total=10;
+	var msg=localStorage.msg;
+	if(msg){
+		oT.value=msg;
+		oT.focus();	
+		
+		overplus(msg);
+	}
+	
+	oT.oninput=function(){
+		overplus(oT.value,function(){
+			bling(oT);	
+		});
+		
+		//存
+		localStorage.msg=oT.value;	
+	};	
+	
+	function overplus(msg,fnCb){
+		var count=total-msg.length;
+		if(count<0){
+			count=0;
+			fnCb();	
+		};
+		oS.innerHTML=count;
+		oT.value=oT.value.substring(0,total);	
+	}
+	
+	function bling(obj){
+		var i=0;
+		var timer=setInterval(function(){
+			i++;
+			if(i%2){
+				obj.style.background='gold';
+			}else{
+				obj.style.background='';	
+			}
+			if(i==6){
+				clearInterval(timer);	
+			}
+		},30);	
+	}
+};
+</script>
+</head>
+
+<body>
+<span>还可以输入<strong id="s1">10</strong>个字</span><br>
+<textarea id="t1" rows="10" cols="40"></textarea>
+</body>
+</html>
